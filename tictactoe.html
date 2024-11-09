@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: rgb(66, 53, 21);
+            border: 1px solid rgb(255, 255, 255);
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+        }
+        .row {
+            clear:both
+        }
+        .board{
+            position: relative;
+            left: 500px;
+            top: 150px;
+        }
+
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #b{
+            position: absolute;
+            left: 0px;
+            top: 570px;
+        }
+        
+    </style>
+    <script>
+        var whoseTurn = "O"
+        function placeXO(id) {
+            // before we put X or O in the box, we need to check the box's innerHTML 
+            if (document.getElementById(id).innerHTML == "") {
+                // box is empty, we can put X or O in it
+                document.getElementById(id).innerHTML = whoseTurn
+                check_winner()
+                if (whoseTurn == "O") {
+                    whoseTurn = "X"
+                } else {
+                    whoseTurn = "O"
+                }  
+            } else {
+                // there is something in the box already, don't do anything
+            }
+        }
+
+        function check_winner(params) {
+            if (document.getElementById("b1").innerHTML != ""
+        && document.getElementById("b1").innerHTML == document.getElementById("b2").innerHTML
+        && document.getElementById("b1").innerHTML == document.getElementById("b3").innerHTML
+    ) {
+           alert("row 1 has winner")     
+            
+        } 
+        
+        
+        else if(document.getElementById("b4").innerHTML != ""
+        && document.getElementById("b4").innerHTML == document.getElementById("b5").innerHTML
+        && document.getElementById("b4").innerHTML == document.getElementById("b6").innerHTML) {
+         alert("row 2 has a winner")   
+        } 
+
+        else if(document.getElementById("b7").innerHTML != ""
+        && document.getElementById("b7").innerHTML == document.getElementById("b8").innerHTML
+        && document.getElementById("b7").innerHTML == document.getElementById("b9").innerHTML) {
+         alert("row 3 has a winner")   
+        } 
+
+        else if(document.getElementById("b1").innerHTML != ""
+        && document.getElementById("b1").innerHTML == document.getElementById("b4").innerHTML
+        && document.getElementById("b1").innerHTML == document.getElementById("b7").innerHTML) {
+         alert("col 1 has a winner")   
+        } 
+
+        else if(document.getElementById("b2").innerHTML != ""
+        && document.getElementById("b2").innerHTML == document.getElementById("b5").innerHTML
+        && document.getElementById("b2").innerHTML == document.getElementById("b8").innerHTML) {
+         alert("col 2 has a winner")   
+        } 
+
+        else if(document.getElementById("b3").innerHTML != ""
+        && document.getElementById("b3").innerHTML == document.getElementById("b6").innerHTML
+        && document.getElementById("b3").innerHTML == document.getElementById("b9").innerHTML) {
+         alert("col 3 has a winner")   
+        } 
+
+        else if(document.getElementById("b1").innerHTML != ""
+        && document.getElementById("b1").innerHTML == document.getElementById("b5").innerHTML
+        && document.getElementById("b1").innerHTML == document.getElementById("b9").innerHTML) {
+         alert("diagonal 1 has a winner")   
+        } 
+
+        else if(document.getElementById("b3").innerHTML != ""
+        && document.getElementById("b3").innerHTML == document.getElementById("b5").innerHTML
+        && document.getElementById("b3").innerHTML == document.getElementById("b7").innerHTML) {
+         alert("diagonal 2 has a winner")   
+        } 
+
+        else if(document.getElementById("b1").innerHTML != ""
+        && document.getElementById("b2").innerHTML != ""
+        && document.getElementById("b3").innerHTML != ""
+        && document.getElementById("b4").inerHTML  != ""
+        && document.getElementById("b5").innerHTML != ""
+        && document.getElementById("b6").innerHTML != ""
+        && document.getElementById("b7").innerHTML != ""
+        && document.getElementById("b8").innerHTML != ""
+        && document.getElementById("b9").innerHTML != ""
+        ){
+            alert("draw")
+        }
+    }
+
+    function pm(params) {
+        var audio = new Audio("./songs/scary.mp3")
+        audio.play()
+    }
+
+    </script>
+</head>
+<body background="./creepysmile.png">
+    <div class="board">
+        <div class="row">
+            <div class="box" id="b1" onclick="placeXO(id)"></div>
+            <div class="box" id="b2" onclick="placeXO(id)"></div>
+            <div class="box" id="b3" onclick="placeXO(id)"></div>
+        </div>
+        <div class="row">
+            <div class="box" id="b4" onclick="placeXO(id)"></div>
+            <div class="box" id="b5" onclick="placeXO(id)"></div>
+            <div class="box" id="b6" onclick="placeXO(id)"></div>
+        </div>
+        <div class="row">
+            <div class="box" id="b7" onclick="placeXO(id)"></div>
+            <div class="box" id="b8" onclick="placeXO(id)"></div>
+            <div class="box" id="b9" onclick="placeXO(id)"></div>
+        </div>
+    
+    
+    </div>
+
+    <button id="b"m onclick="pm()">pm(playmusic)</button>
+    
+</body>
+</html>
