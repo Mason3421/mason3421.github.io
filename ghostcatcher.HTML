@@ -6,7 +6,7 @@
     <title>Document</title>
     <style>
         body {
-  background-image: url('./Colorful-gaming.jpg');
+  background-image: url('./1.webp');
   background-repeat: no-repeat;
   background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
@@ -29,14 +29,44 @@
     position: absolute;
     bottom: 10px;
 }
+    #sc_field{
+        color: whitesmoke;
+    }
+    #hb_frame{
+        position: absolute;
+        background-color: rgb(0, 238, 255);
+        width: 125px;
+        height: 125px;
+        left: 50%;
+    }
+    #hb_color_fill{
+        position: absolute;
+        background-color: rgb(0, 238, 255);
+        width: 125px;
+        height: 125px;
+        left: 50%;
+    }
     </style>
 </head>
 <body>
-    <img src="./deadreaper.webp" alt="" id="reaper" onclick="mr()">
-    <div>score</div>
+    <img src="r1.gif" alt="" id="reaper" onclick="mr()">
+    <div id="sc_field">score <span id="sc"></span></div>
     <script>
+        const audio = new Audio('bgm.mp3');
+        audio.play()
+
+        var em = ['stop',
+            'you dum fat gyatt!',
+            'im warning you',
+            "you fatty!!",
+            "you @*%#*%#$@ dum fatty!!!",
+            "this is your last warning!",
+            "bye,you %#$@*&*$# b**h"
+        ]
+        var n = 0
         let score = 0
         let totaltime = 0
+        
         let userInput = prompt("1=ez 2=normal 3=hard 4=extreme 5=???" )
         if (userInput == 5) {
             // 1 change img
@@ -63,8 +93,56 @@
         }
         
         else {
+            console.log("123");
+            
             document.body.style.backgroundImage = 'url(gaming-background.webp)';
+            alert(em[n])
+            n++
+        }
 
+        while (userInput != 1 
+            && userInput != 2
+            && userInput != 3
+            && userInput != 4
+            && userInput != 5) {
+            userInput = prompt("1=ez 2=normal 3=hard 4=extreme 5=??? " + n )
+            if (userInput == 5) {
+                // 1 change img
+                // 2 play the rainy.mp3
+                const soundEffect = new Audio('./songs/strings-and-drums-139887.mp3'); // Replace with your sound file path
+                soundEffect.play();
+                totaltime=6000
+            } else if (userInput==1) {
+                const soundEffect = new Audio('./songs/strings-and-drums-139887.mp3'); // Replace with your sound file path
+                soundEffect.play();
+                totaltime=35000
+            } else if (userInput==2) {
+                const soundEffect = new Audio('./songs/strings-and-drums-139887.mp3'); // Replace with your sound file path
+                soundEffect.play();
+                totaltime=25000
+            }else if (userInput==3) {
+                const soundEffect = new Audio('./songs/strings-and-drums-139887.mp3'); // Replace with your sound file path
+                soundEffect.play();
+                totaltime=19000
+            }else if (userInput==4) {
+                const soundEffect = new Audio('./songs/strings-and-drums-139887.mp3'); // Replace with your sound file path
+                soundEffect.play();
+                totaltime=13000
+            }else {
+                console.log("ad");
+                
+                document.body.style.backgroundImage = 'url(gaming-background.webp)';
+                if (n>=7) {
+                    console.log(">=7");
+                    break;
+                    
+                } else {
+                    console.log("<7");
+                }
+                alert(em[n])
+                    n++
+                
+            }
         }
 
 
@@ -75,6 +153,7 @@
         function mr(params) {
             console.log("+1");
             score++
+            document.getElementById("sc").innerHTML = score
             var myRandomNumber = getRndInteger(0, 1000)
             console.log(myRandomNumber);
             document.getElementById("reaper").style.left = myRandomNumber+"px"
@@ -87,11 +166,12 @@
 
         setTimeout(() => {
             alert("game over. you scored " + score)
+            location.reload()
         }, totaltime);
     </script>
 
 <audio controls id="ao">
-    <source src="./songs/strings-and-drums-139887.mp3" type="audio/ogg">
+    <source src="bgm.mp3" type="audio/ogg">
     Your browser does not support the audio tag.
   </audio>
 
